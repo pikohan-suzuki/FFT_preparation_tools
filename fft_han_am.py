@@ -70,7 +70,7 @@ if __name__ == "__main__":
         file_name = re.split("[\\\|/]", file)[-1]
         label = "_".join(file_name.split("_")[1:-1])
         output_dict["label"] = label
-        output_dict["type"] = file_name[0]
+        output_dict["type"] = file_name.split("_")[0]
         
         save_dir = "data/fft"
         with open("{}/{}".format(save_dir,file_name),"w") as f:
