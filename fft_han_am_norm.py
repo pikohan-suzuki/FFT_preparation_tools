@@ -65,15 +65,15 @@ if __name__ == "__main__":
             lines = f.readlines()
         acc_lines = [float(line.split(",")[1]) for line in lines]
         freq,fft_list = fft_han_am(acc_lines)
-        # freq,fft_list = fft_han_norm(acc_lines)
         output_dict["acc"] = fft_list
 
         if len(lines[0].split(",")) > 2:
             gyro_list = [[ float(gyro_i) for gyro_i in line.split(",")[2:5] ] for line in lines]
             output_dict["gyro"] = gyro_list
 
-        file_name = re.split("[\\\|/]", file)[-1].split("_")
-        file_name = file_name[0] + "_" + file_name[1] + "_" + file_name[-1]
+        file_name = re.split("[\\\|/]", file)[-1]
+        label = "_".join(file_name.split("_")[1:-1])
+        output_dict["label"] = label
         
         save_dir = "data/fft"
         with open("{}/{}".format(save_dir,file_name),"w") as f:
